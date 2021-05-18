@@ -1,0 +1,55 @@
+group 'com.lilplugins.xf_speech_plugin'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        google()
+    }
+
+    dependencies {
+        //本来gradle编译工具版本号是3.5.0，改成3.2.1后编译成功
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+}
